@@ -7,7 +7,7 @@ block content
       //- Part One - Get the username
       div(v-if="!submitted")
         h1= title
-        form( @submit.prevent="doSomething" )
+        form( @submit.prevent="getProfile" )
           input(type="text" placeholder="Enter username to search" v-model="thProfileName" @keyup="error ? errorFalse() : ''")
           br
           br

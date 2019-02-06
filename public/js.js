@@ -3,19 +3,19 @@ $( document ).ready(function() {
   var app = new Vue({
     el: "#app",
     data: {
-      isVueWorking: true,
-      submitted: false,
-      error: false,
+      isVueWorking: true, // Vue is working
+      submitted: false, // False until user submits a username
+      error: false, // False until an error occurs
       thName: "",
       thProfileName: "",
       thURL: "",
       thAvatar: "",
       thBadgeCount: "",
       thTotalPoints: "",
-      thHighSkills: []
+      thHighSkills: [] // Skills with points > 500
     },
     methods: {
-      doSomething: function(){
+      getProfile: function(){
         const url = "https://teamtreehouse.com/" + app.thProfileName + ".json";
         axios.get(url)
           .then(function (res) {
