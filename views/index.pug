@@ -1,17 +1,22 @@
 extends layout
 
 block content
-    div#app
+  
+    div#app( v-if="isVueWorking" v-cloak )
+      
+      //- Part One - Get the username
       div(v-if="!submitted")
         h1= title
-        p {{isVueWorking}}
-        
-        a(href="#" @click="doSomething" ) Send Request to Treehouse
+        form( @submit.prevent="doSomething" )
+          input(type="text" placeholder="Enter username to search" v-model="thProfileName" @keyup="error ? errorFalse() : ''")
+          br
+          br
+          input( type="submit" value="Get User Profile")
+        p( v-if="error" v-cloak ) The profile name {{thProfileName}} could not be found.#[br]Please check your spelling and try again.#[br]Alternatively check your internet connection.
       
+      //- Part Two - Display the results
       div(v-if="submitted" v-cloak)
-        
-        h1 TH User Details
-        
+        h1 TeamTreehouse User Details
         p Name: {{thName}}
         p URL: #[a( :href="thURL" target="_blank") {{thURL}}]
         img( :src="thAvatar" alt="Treehouse Avatar" style="max-width:150px;")
@@ -20,4 +25,3 @@ block content
         p Notable Skills:
         ul( v-for="skill in thHighSkills" )
           li {{skill[0]}} : {{skill[1]}}
-      
