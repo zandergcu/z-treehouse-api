@@ -1,0 +1,23 @@
+extends layout
+
+block content
+    div#app
+      div(v-if="!submitted")
+        h1= title
+        p {{isVueWorking}}
+        
+        a(href="#" @click="doSomething" ) Send Request to Treehouse
+      
+      div(v-if="submitted" v-cloak)
+        
+        h1 TH User Details
+        
+        p Name: {{thName}}
+        p URL: #[a( :href="thURL" target="_blank") {{thURL}}]
+        img( :src="thAvatar" alt="Treehouse Avatar" style="max-width:150px;")
+        p Badges: {{thBadgeCount}}
+        p Total Points: {{thTotalPoints}}
+        p Notable Skills:
+        ul( v-for="skill in thHighSkills" )
+          li {{skill[0]}} : {{skill[1]}}
+      
